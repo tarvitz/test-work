@@ -1,0 +1,25 @@
+{
+  "name": "amt",
+  "version": "0.0.1",
+  "authors": [
+    "Tarvitz <tarvitz@blacklibrary.ru>"
+  ],
+  "description": "none",
+  "keywords": [
+    "frontent",
+    "dependecies"
+  ],
+  "license": "MIT",
+  "homepage": "localhost",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "application/static/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1"
+  }
+}

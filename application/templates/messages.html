@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+  <h3>Messages</h3>
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>DATA</th>
+      <th>CREATED ON</th>
+    </tr>
+    {% for message in messages %}
+      <tr>
+        <td>{{ message.message_id }}</td>
+        <td>{{ message.message_data }}</td>
+        <td>{{ message.created_on }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
