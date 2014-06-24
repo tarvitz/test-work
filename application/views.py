@@ -53,16 +53,22 @@ def message_post():
     )
 
 @app.route('/api/messages/<int:pk>/', methods=['PUT', ])
-@ndb.transactional(retries=1)
+
 def message_put(pk=None):
     form = MessageForm(request.form)
     if request.method == 'PUT' and form.validate():
-        key = ndb.Key('Message', pk)
-        msg = key.get()
-        if msg:
-            msg = Message(key=key, **form.data)
-            msg.put()
-            return jsonify(msg.to_dict())
+
+        @ndb.transactional(retries=1)
+        def put():
+            key = ndb.Key('Message', pk)
+            msg = key.get()
+            if msg:
+                msg = Message(key=key, **form.data)
+                msg.put()
+            return msg
+
+        msg = put()
+        return jsonify(msg.to_dict())
     return jsonify({'errors': {}})
 
 
