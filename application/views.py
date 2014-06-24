@@ -35,7 +35,7 @@ def message_list():
 @app.route('/api/messages/<int:pk>/', methods=['GET', ])
 def message_get(pk=None):
     msg = Message.get_by_id(pk)
-    return jsonify(msg.to_dict())
+    return jsonify(msg.to_dict()), 200
 
 
 @app.route('/api/messages/', methods=['POST', ])
@@ -47,10 +47,10 @@ def message_post():
         msg.put()
         return jsonify(
             message_id=form.data['message_id']
-        )
+        ), 201
     return jsonify(
         form.errors
-    )
+    ), 400
 
 @app.route('/api/messages/<int:pk>/', methods=['PUT', ])
 
@@ -68,8 +68,8 @@ def message_put(pk=None):
             return msg
 
         msg = put()
-        return jsonify(msg.to_dict())
-    return jsonify({'errors': {}})
+        return jsonify(msg.to_dict()), 200
+    return jsonify({'errors': {}}), 400
 
 
 @app.route('/api/messages/<int:pk>/', methods=['DELETE', ])
@@ -84,5 +84,5 @@ def message_delete(pk=None):
         msg.key.delete()
         return jsonify({
             pk: 'deleted'
-        })
-    return jsonify({'errors': {}})
+        }), 204
+    return jsonify({'errors': {}}), 400

@@ -77,7 +77,7 @@ class MessageTest(unittest.TestCase):
         count = Message.query().count()
         response = self.app.post('/api/messages/', data=self.post,
                                  follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
         load = json.loads(response.data)
         self.assertEqual(load['message_id'], self.post['message_id'])
         self.assertEqual(Message.query().count(), count + 1)
@@ -89,7 +89,7 @@ class MessageTest(unittest.TestCase):
         count = Message.query().count()
         response = self.app.delete(url, data={},
                                    follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 204)
 
         key = ndb.Key('Message', pk)
         msg = key.get()
