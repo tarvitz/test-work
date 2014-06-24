@@ -39,6 +39,6 @@ Frontend зависимости
 
     user@localhost amt$ python tests.py <расположение google_appengine> application.tests
 
-DEMO
-````
+Демонстрационный сайт
+---------------------
 Демонстрационный сайт можно найти по `ссылке<http://test-work-amt.appspot.com/>`_
